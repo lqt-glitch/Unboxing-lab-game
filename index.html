@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3ee">
+  <meta name="description" content="把六件電腦組件拖出機箱，配對名稱，認識每件組件的工作。適合中一學生的電腦硬件小遊戲。">
+  <title>開箱儀式 · 電腦組件配對</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='2' width='20' height='28' rx='4' fill='%23323149'/%3E%3Ccircle cx='12' cy='8' r='2' fill='%23ed815f'/%3E%3Cpath d='M11 20h10M11 24h10' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <div class="topline">
+      <div class="wordmark"><span class="mini-mark" aria-hidden="true">↗</span> UNBOX / LAB <span class="lesson-tag">電腦初體驗</span></div>
+      <div class="tools">
+        <button class="tool-btn" id="hint-toggle" type="button" aria-pressed="true"><span aria-hidden="true">✦</span> <span id="hint-label">提示已開</span></button>
+        <button class="tool-btn reset" id="reset" type="button"><span aria-hidden="true">↻</span> 重新開始</button>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <p class="eyebrow">認識電腦，從打開機箱開始</p>
+      <h1>開箱儀式<span class="title-period">。</span></h1>
+      <p class="instruction">把組件拖出機箱，放進相同名稱的框內。</p>
+      <p class="tap-tip"><span class="step-number">1</span> 點一下組件 <span class="step-arrow">→</span> <span class="step-number">2</span> 再點名稱框，也可以配對</p>
+    </header>
+
+    <div class="mission-strip">
+      <span class="mission-label">今日任務 <strong>認出 6 件組件</strong></span>
+      <div class="progress-group"><div class="progress-track" role="progressbar" aria-label="已配對組件" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><span id="progress-fill"></span></div><span id="progress-text"><strong>0</strong> / 6</span></div>
+    </div>
+
+    <section class="board" aria-label="電腦組件配對遊戲">
+      <div class="target-column left-targets" id="left-targets"></div>
+
+      <div class="computer-column">
+        <div class="case-caption"><span class="case-dot" aria-hidden="true"></span><span>電腦機箱</span><span class="case-caption-en">COMPUTER CASE</span></div>
+        <div class="computer-case" id="case">
+          <div class="case-topbar" aria-hidden="true"><span class="power-symbol">⏻</span><i class="led"></i><span class="port"></span><span class="port"></span><span class="case-brand">UNBOX / LAB</span></div>
+          <div class="case-interior">
+            <div class="inventory" id="inventory" aria-label="機箱內可配對的組件"></div>
+            <div class="success-screen" id="success-screen" hidden>
+              <div class="success-medal" aria-hidden="true">✦</div>
+              <p class="success-eyebrow">MISSION COMPLETE</p>
+              <h2>開箱成功！</h2>
+              <p>你已認出全部 6 件組件。<br>看看每一件負責甚麼工作吧。</p>
+              <button class="primary-btn" id="play-again" type="button">再玩一次 <span aria-hidden="true">↻</span></button>
+            </div>
+            <div class="case-note" id="case-note">組件已攤開，方便你辨認</div>
+          </div>
+          <span class="case-foot foot-left" aria-hidden="true"></span><span class="case-foot foot-right" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div class="target-column right-targets" id="right-targets"></div>
+    </section>
+
+    <div class="feedback" id="feedback" role="status" aria-live="polite" aria-atomic="true"><span class="feedback-icon" aria-hidden="true">↗</span><p>先選一件你認得的組件。慢慢來，放錯也可以再試。</p></div>
+    <footer class="footer"><p><strong>小知識</strong> 系統組是<strong>機箱連同裏面的主要組件</strong>，CPU 只是其中一件。</p><details id="image-credits"><summary>圖片來源</summary><div id="credits-content"><p>照片來自 Wikimedia Commons；不同型號的外形可能略有不同。照片只作縮放顯示，RAM 在畫面中轉向。</p><ul><li><a href="https://commons.wikimedia.org/wiki/File:A790GXH-128M-Motherboard.jpg" target="_blank" rel="noopener noreferrer">主機板</a> — Evan-Amos · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Intel_CPU_Core_i7_2600K_Sandy_Bridge_top.jpg" target="_blank" rel="noopener noreferrer">CPU</a> — Eric Gaba, Wikimedia Commons user Sting · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:RAM_module.jpg" target="_blank" rel="noopener noreferrer">RAM</a> — Julo · <a href="https://commons.wikimedia.org/wiki/File:RAM_module.jpg" target="_blank" rel="noopener noreferrer">Public domain (PD-self)</a></li><li><a href="https://commons.wikimedia.org/wiki/File:Innovation_IT_SSD_2.5%22_1_TB_SATA_III_TLC-7138.jpg" target="_blank" rel="noopener noreferrer">SSD</a> — Raimond Spekking · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:DM-Corsair-120MM-Fan-Top.jpg" target="_blank" rel="noopener noreferrer">散熱風扇</a> — Kent Madsen (Designermadsen / KentVejrupMadsen) · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></li><li><a href="https://commons.wikimedia.org/wiki/File:ATX_Computer_power_supply_unit.jpg" target="_blank" rel="noopener noreferrer">電源供應器</a> — Dmitry Makeev · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li></ul></div></details></footer>
+  </main>
+</body>
+</html>
